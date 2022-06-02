@@ -30,7 +30,9 @@ function App() {
       <img className='tcglogo' src='./tcglogo.png' alt=''onClick={refreshPage}></img>
       <div className='App-header'>
         <div className="input-button">
-        <TextField id="outlined-basic" label="Enter Pokemon" variant="outlined" onChange={submitNameHandler}/>
+          <TextField
+            style={{ width: '200px' }}
+            id="outlined-basic" label="Enter Pokemon" variant="outlined" onChange={submitNameHandler} />
           <Button
             style={{width: '200px'}}
             variant="contained"
