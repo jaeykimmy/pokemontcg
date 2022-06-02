@@ -1,0 +1,15 @@
+.card-large {
+  width: 50vw;
+  /* height: 100vw */
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-set {
+  display: flex;
+  justify-content: center;
+  align-items:center
+}

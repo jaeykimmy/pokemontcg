@@ -6,6 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+.card-individual {
+  display:flex;
+  flex-direction: column;
+  row-gap: 64px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -14,7 +19,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #b1c4e8;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +40,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.input-button {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 32px;
 }
