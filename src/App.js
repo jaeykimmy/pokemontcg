@@ -19,22 +19,35 @@ function App() {
         setCardData(res.data.data)
     })
   }
+
+  const refreshPage = () => {
+    window.location.reload();
+  }
+
   console.log(cardData)
   return (
     <div className="App">
-      <h1>Pokemon TCG Gallery</h1>
+      <img className='tcglogo' src='./tcglogo.png' alt=''onClick={refreshPage}></img>
       <div className='App-header'>
         <div className="input-button">
         <TextField id="outlined-basic" label="Enter Pokemon" variant="outlined" onChange={submitNameHandler}/>
-        <Button variant="contained" onClick={searchPokemon}>Search</Button>
+          <Button
+            style={{width: '200px'}}
+            variant="contained"
+            onClick={searchPokemon}>Search</Button>
         </div>
+        {!cardData && 
+          <>
+          <h3>Find prices and high quality images of your favourite cards</h3>
+        <img className="sample" src='./card.png' alt=""></img>
+          </>
+        }
         {cardData &&
-              <Paper className="card-individual">
+          <Paper className="card-individual">
+            <Grid columnSpacing={2}>
             {cardData.map((card) => (
-                <Grid>
-                {/* Older Mcdonalds set have no card url for tcgplayer */}
-              {card.tcgplayer &&
               <>
+              {card.tcgplayer &&
                   <Card
                     cardSet={card.set.name}
                     cardNumber={card.number}
@@ -43,10 +56,10 @@ function App() {
                     cardSetIcon={card.set.images.symbol}
                     cardURL={card.tcgplayer.url}
                     /> 
-          </>
                   }
-              </Grid>
+                  </>
           ))}
+            </Grid>
         </Paper>
         }
       </div>

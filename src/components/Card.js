@@ -24,9 +24,9 @@ export default function BasicModal(props) {
 
   // console.log(props)
   return (
-    <Grid columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    <div className='card'>
       <Button onClick={handleOpen} className='icon-button'>
-        <img src={props.cardSmall} alt=''></img>
+        <img className="card-small"src={props.cardSmall} alt=''></img>
       </Button>
       <div className='icon-set'>
         <img className='icon'
@@ -34,7 +34,8 @@ export default function BasicModal(props) {
           alt=''></img>
         {props.cardSet} #{props.cardNumber}
       </div>
-<Button variant="contained" href={props.cardURL}>TCGPlayer</Button>
+<Button variant="contained" href={props.cardURL} target="_blank">TCGPlayer Price</Button>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -45,6 +46,6 @@ export default function BasicModal(props) {
           <img className='card-large' src={props.cardLarge} alt=''></img>
         </Box>
       </Modal>
-    </Grid>
+    </div>
   );
 }

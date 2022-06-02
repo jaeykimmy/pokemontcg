@@ -48,3 +48,17 @@
   flex-direction: column;
   margin: 32px;
 }
+
+.sample {
+  width: 60vw
+}
+
+h3 {
+  margin-left: 64px;
+  margin-right: 64px
+}
+
+.tcglogo {
+  height: 75px;
+  padding: 8px;
+}

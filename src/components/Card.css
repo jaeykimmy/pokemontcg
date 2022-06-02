@@ -11,5 +11,14 @@
 .icon-set {
   display: flex;
   justify-content: center;
-  align-items:center
+  align-items:center;
+  column-gap: 16px;
+}
+
+.card-small {
+  margin: 32px
+}
+
+.card {
+  margin: 16px;
 }
