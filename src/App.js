@@ -1,6 +1,6 @@
 
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './components/Card';
 import { Grid, Paper, TextField, Button } from '@mui/material';
@@ -9,9 +9,26 @@ import FreeSolo from './components/PokemonAutoComplete';
 function App() {
   const [name, setName] = useState('')
   const [cardData, setCardData] = useState('')
+  const [pokeData, setPokeData] = useState('')
+  const [pokemon, setPokemon] = useState('')
+
+  useEffect(() => {
+    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
+      .then(res => {
+        setPokeData(res.data.results)
+      })
+  }, [])
+  
+  const onPokemonChange = (e, v) => {
+    setPokemon(v)
+  }
+  
+  console.log(pokeData)
+  console.log(pokemon)
 
   const submitNameHandler = (event) => {
     setName(event.target.value)
+    console.log("targetvalue:", event.target.value)
   }
 
   const searchPokemon = () => {
@@ -26,12 +43,18 @@ function App() {
   }
 
   console.log(cardData)
+  console.log(name)
   return (
     <div className="App">
       <img className='tcglogo' src='./tcglogo.png' alt=''onClick={refreshPage}></img>
       <div className='App-header'>
         <div className="input-button">
-          <FreeSolo submitNameHandler={submitNameHandler}/>
+          <FreeSolo submitNameHandler={submitNameHandler}
+            onPokemonChange={onPokemonChange}
+            pokeData={pokeData}
+            pokemon={pokemon}
+            name={name}/>
+            
           {/* <TextField
             style={{ width: '200px' }}
             id="outlined-basic" label="Enter Pokemon" variant="outlined" onChange={submitNameHandler} /> */}
