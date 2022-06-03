@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Card from './components/Card';
 import { Grid, Paper, TextField, Button } from '@mui/material';
+import FreeSolo from './components/PokemonAutoComplete';
 
 function App() {
   const [name, setName] = useState('')
@@ -30,11 +31,12 @@ function App() {
       <img className='tcglogo' src='./tcglogo.png' alt=''onClick={refreshPage}></img>
       <div className='App-header'>
         <div className="input-button">
-          <TextField
+          <FreeSolo submitNameHandler={submitNameHandler}/>
+          {/* <TextField
             style={{ width: '200px' }}
-            id="outlined-basic" label="Enter Pokemon" variant="outlined" onChange={submitNameHandler} />
+            id="outlined-basic" label="Enter Pokemon" variant="outlined" onChange={submitNameHandler} /> */}
           <Button
-            style={{width: '200px'}}
+            style={{width: '300px'}}
             variant="contained"
             onClick={searchPokemon}>Search</Button>
         </div>
