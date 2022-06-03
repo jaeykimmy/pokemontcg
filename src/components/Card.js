@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import './Card.css'
-import { Grid } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -22,7 +21,6 @@ export default function BasicModal(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // console.log(props)
   return (
     <div className='card'>
       <Button onClick={handleOpen} className='icon-button'>
