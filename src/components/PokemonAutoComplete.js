@@ -9,14 +9,14 @@ function FreeSolo(props) {
   console.log(props)
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
-      {props.pokeData &&
+      {props.pokeDropdown &&
       
       <Autocomplete
         id="free-solo-demo"
         freeSolo
         onChange={props.onPokemonChange}
         value={props.pokemon}
-        options={props.pokeData.map((option) => option.name)}
+        options={props.pokeDropdown.map((option) => option.name)}
         renderInput={(params) => <TextField {...params} label="name" onChange={props.submitNameHandler}/>}
       />
       }

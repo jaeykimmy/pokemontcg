@@ -9,13 +9,13 @@ import FreeSolo from './components/PokemonAutoComplete';
 function App() {
   const [name, setName] = useState('')
   const [cardData, setCardData] = useState('')
-  const [pokeData, setPokeData] = useState('')
+  const [pokeDropdown, setPokeDropdown] = useState('')
   const [pokemon, setPokemon] = useState('')
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
       .then(res => {
-        setPokeData(res.data.results)
+        setPokeDropdown(res.data.results)
       })
   }, [])
   
@@ -23,8 +23,9 @@ function App() {
     setPokemon(v)
   }
   
-  console.log(pokeData)
+  // console.log(pokeData)
   console.log(pokemon)
+  console.log("cardData", cardData)
 
   const submitNameHandler = (event) => {
     setName(event.target.value)
@@ -51,7 +52,7 @@ function App() {
         <div className="input-button">
           <FreeSolo submitNameHandler={submitNameHandler}
             onPokemonChange={onPokemonChange}
-            pokeData={pokeData}
+            pokeDropdown={pokeDropdown}
             pokemon={pokemon}
             name={name}/>
             
