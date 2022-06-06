@@ -1,94 +1,93 @@
-
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './components/Card';
-import { Grid, Paper, TextField, Button } from '@mui/material';
+import { Grid, Paper, Button } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+
 import FreeSolo from './components/PokemonAutoComplete';
 
 function App() {
   const [name, setName] = useState('')
   const [cardData, setCardData] = useState('')
-  const [pokeDropdown, setPokeDropdown] = useState('')
-  const [pokemon, setPokemon] = useState('')
+  const [allPokemonNames, setAllPokemonNames] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`)
       .then(res => {
-        setPokeDropdown(res.data.results)
-      })
+        setAllPokemonNames(res.data.results)
+        setLoading(false);
+      }).catch(() => {
+        setLoading(false);
+      });
   }, [])
-  
-  const onPokemonChange = (e, v) => {
-    setPokemon(v)
-  }
-  
-  // console.log(pokeData)
-  console.log(pokemon)
-  console.log("cardData", cardData)
 
-  const submitNameHandler = (event) => {
-    setName(event.target.value)
-    console.log("targetvalue:", event.target.value)
+  const updateSearchTerm = (pokemonName) => {
+    setName(pokemonName)
   }
 
-  const searchPokemon = () => {
-    axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}`)
+  const searchPokemon = (searchTerm) => {
+    setLoading(true);
+
+    axios.get(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}`)
       .then(res => {
         setCardData(res.data.data)
-    })
+        setLoading(false);
+      }).catch(() => {
+        setLoading(false);
+      });
   }
 
   const refreshPage = () => {
     window.location.reload();
   }
 
-  console.log(cardData)
-  console.log(name)
   return (
     <div className="App">
-      <img className='tcglogo' src='./tcglogo.png' alt=''onClick={refreshPage}></img>
+      <img className='tcglogo' src='./tcglogo.png' alt='' onClick={refreshPage}></img>
       <div className='App-header'>
         <div className="input-button">
-          <FreeSolo submitNameHandler={submitNameHandler}
-            onPokemonChange={onPokemonChange}
-            pokeDropdown={pokeDropdown}
-            pokemon={pokemon}
-            name={name}/>
-            
-          {/* <TextField
-            style={{ width: '200px' }}
-            id="outlined-basic" label="Enter Pokemon" variant="outlined" onChange={submitNameHandler} /> */}
+          <FreeSolo updateSearchTerm={updateSearchTerm}
+            pokeData={allPokemonNames}
+            name={name} 
+            loading={loading}
+            />
           <Button
-            style={{width: '300px'}}
+            style={{ width: '300px' }}
             variant="contained"
-            onClick={searchPokemon}>Search</Button>
+            onClick={() => searchPokemon(name)}>Search</Button>
         </div>
-        {!cardData && 
+        {!cardData &&
           <>
-          <h3>Find prices and high quality images of your favourite cards</h3>
-        <img className="sample" src='./card.png' alt=""></img>
+            <h3>Find prices and high quality images of your favourite cards</h3>
+            <img className="sample" src='./card.png' alt=""></img>
           </>
         }
+        {loading && 
+          <CircularProgress />
+        }
+
         {cardData &&
           <Paper className="card-individual">
             <Grid columnSpacing={2}>
-            {cardData.map((card) => (
-              <>
-              {card.tcgplayer &&
-                  <Card
-                    cardSet={card.set.name}
-                    cardNumber={card.number}
-                    cardLarge={card.images.large}
-                    cardSmall={card.images.small}
-                    cardSetIcon={card.set.images.symbol}
-                    cardURL={card.tcgplayer.url}
-                    /> 
+              {cardData.map((card) => (
+                <>
+                  {card.tcgplayer &&
+                    <Card
+                      cardSet={card.set.name}
+                      cardNumber={card.number}
+                      cardLarge={card.images.large}
+                      cardSmall={card.images.small}
+                      cardSetIcon={card.set.images.symbol}
+                      cardURL={card.tcgplayer.url}
+                    />
                   }
-                  </>
-          ))}
+                </>
+              ))}
             </Grid>
-        </Paper>
+          </Paper>
         }
       </div>
     </div>
