@@ -51,7 +51,6 @@ function App() {
         <div className="input-button">
           <FreeSolo updateSearchTerm={updateSearchTerm}
             pokeData={allPokemonNames}
-            name={name} 
             loading={loading}
             />
           <Button
