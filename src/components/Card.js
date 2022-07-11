@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import './Card.css'
-import { Grid } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -33,10 +32,15 @@ export default function BasicModal(props) {
           src={props.cardSetIcon}
           alt=''></img>
         {props.cardSet} #{props.cardNumber}
-        {props.cardInfo.tcgplayer && Object.keys(props.cardInfo.tcgplayer.prices).map(x => <p>{x}</p>)}
-        {props.cardInfo.tcgplayer && Object.values(props.cardInfo.tcgplayer.prices).map(x => (Object.values(x).map(x => <p>{x}</p>)))}
-        {props.cardInfo.tcgplayer && Object.values(props.cardInfo.tcgplayer.prices).map(x => (Object.keys(x).map(x => <p>{x}</p>)))}
 
+      </div>
+      <div className = "prices">
+        <div>
+          {Object.values(props.cardInfo.tcgplayer.prices).map(x => (Object.keys(x).map(x => <p>{(x.charAt(0).toUpperCase() + x.slice(1)).replace(/([A-Z])/g, ' $1').trim()}:</p>)))}
+        </div>
+        <div>
+          {Object.values(props.cardInfo.tcgplayer.prices).map(x => (Object.values(x).map(x => <p>${x}</p>)))}
+        </div>
       </div>
 <Button variant="contained" href={props.cardURL} target="_blank">TCGPlayer Price</Button>
 
