@@ -42,7 +42,7 @@ export default function BasicTable(props) {
             >
               
               {Object.values(props.cardInfo.tcgplayer.prices).map((x) =>
-            Object.values(x).map((x) => <TableCell align="right">${x}</TableCell>)
+            Object.values(x).map((x) => <TableCell align="right">${x.toFixed(2)}</TableCell>)
           )}
               
               
