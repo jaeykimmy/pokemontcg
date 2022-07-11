@@ -32,7 +32,8 @@ export default function BasicModal(props) {
         <img className="icon" src={props.cardSetIcon} alt=""></img>
         {props.cardSet} #{props.cardNumber}
       </div>
-      <PriceTable cardInfo={props.cardInfo} />
+      {props.cardInfo.tcgplayer.prices && <PriceTable cardInfo={props.cardInfo} style={{width: 360}} />}
+      
       {/* <div className="prices">
         <div>
 

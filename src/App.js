@@ -86,6 +86,7 @@ function App() {
                     new Date(b.set.releaseDate).valueOf()
                   );
                 })
+                .reverse()
                 .map((card) => (
                   <>
                     {card.tcgplayer && (
