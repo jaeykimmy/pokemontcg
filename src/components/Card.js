@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import "./Card.css";
-import PriceTable from "./PriceTable.js"
+import PriceTable from "./PriceTable.js";
 
 const style = {
   position: "absolute",
@@ -32,8 +32,10 @@ export default function BasicModal(props) {
         <img className="icon" src={props.cardSetIcon} alt=""></img>
         {props.cardSet} #{props.cardNumber}
       </div>
-      {props.cardInfo.tcgplayer.prices && <PriceTable cardInfo={props.cardInfo} style={{width: 360}} />}
-      
+      {props.cardInfo.tcgplayer.prices && (
+        <PriceTable cardInfo={props.cardInfo} style={{ width: 360 }} />
+      )}
+
       {/* <div className="prices">
         <div>
 
