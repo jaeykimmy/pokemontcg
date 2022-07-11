@@ -71,7 +71,7 @@ function App() {
         }
 
         {cardData &&
-          <Paper className="card-individual">
+          <Paper className="card-individual" >
             <Grid columnSpacing={2}>
               {cardData.map((card) => (
                 <>
@@ -82,7 +82,9 @@ function App() {
                       cardLarge={card.images.large}
                       cardSmall={card.images.small}
                       cardSetIcon={card.set.images.symbol}
-                      cardURL={card.tcgplayer.url}
+                    cardURL={card.tcgplayer.url}
+                    cardInfo={card}
+                    key={card.id}
                     />
                   }
                 </>
