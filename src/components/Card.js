@@ -32,7 +32,6 @@ export default function BasicModal(props) {
           src={props.cardSetIcon}
           alt=''></img>
         {props.cardSet} #{props.cardNumber}
-
       </div>
       <div className = "prices">
         <div>

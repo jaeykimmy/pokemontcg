@@ -73,7 +73,13 @@ function App() {
         {cardData &&
           <Paper className="card-individual" >
             <Grid columnSpacing={2}>
-              {cardData.map((card) => (
+              {cardData
+                .sort(function (a, b) {
+              return (
+                new Date(a.set.releaseDate).valueOf() -
+                new Date(b.set.releaseDate).valueOf()
+              );
+            }).map((card) => (
                 <>
                   {card.tcgplayer &&
                     <Card
