@@ -34,6 +34,9 @@ export default function BasicModal(props) {
           alt=''></img>
         {props.cardSet} #{props.cardNumber}
         {props.cardInfo.tcgplayer && Object.keys(props.cardInfo.tcgplayer.prices).map(x => <p>{x}</p>)}
+        {props.cardInfo.tcgplayer && Object.values(props.cardInfo.tcgplayer.prices).map(x => (Object.values(x).map(x => <p>{x}</p>)))}
+        {props.cardInfo.tcgplayer && Object.values(props.cardInfo.tcgplayer.prices).map(x => (Object.keys(x).map(x => <p>{x}</p>)))}
+
       </div>
 <Button variant="contained" href={props.cardURL} target="_blank">TCGPlayer Price</Button>
 
