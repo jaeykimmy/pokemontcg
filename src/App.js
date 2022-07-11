@@ -4,6 +4,8 @@ import axios from 'axios';
 import Card from './components/Card';
 import { Grid, Paper, Button } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import samplecard from './images/card.png'
+import tcglogo from './images/tcglogo.png'
 
 import FreeSolo from './components/PokemonAutoComplete';
 
@@ -46,7 +48,7 @@ function App() {
 
   return (
     <div className="App">
-      <img className='tcglogo' src='./tcglogo.png' alt='' onClick={refreshPage}></img>
+      <img className='tcglogo' src={tcglogo} alt='' onClick={refreshPage}></img>
       <div className='App-header'>
         <div className="input-button">
           <FreeSolo updateSearchTerm={updateSearchTerm}
@@ -61,7 +63,7 @@ function App() {
         {!cardData &&
           <>
             <h3>Find prices and high quality images of your favourite cards</h3>
-            <img className="sample" src='./card.png' alt=""></img>
+            <img className="sample" src={samplecard} alt=""></img>
           </>
         }
         {loading && 
