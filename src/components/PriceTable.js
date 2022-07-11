@@ -14,7 +14,7 @@ export default function BasicTable(props) {
   const priceNormal = Object.values(
     Object.values(props.cardInfo.tcgplayer.prices)[0]
   );
-  const priceRare = Object.values(props.cardInfo.tcgplayer.prices)[1];
+  
   return (
     <TableContainer component={Paper}>
       {/* {Object.keys(Object.values(props.cardInfo.tcgplayer.prices)[0]).map((x) => <p>{x}</p>)}
@@ -49,6 +49,34 @@ export default function BasicTable(props) {
           </TableBody>
         </Table>
       </Grid>
+      {Object.values(props.cardInfo.tcgplayer.prices)[1] && <Grid item sm={12}>
+        <Table
+          sx={{ minWidth: 360 }}
+          aria-label="simple table"
+          key={props.cardInfo.id}
+        >
+          <TableBody>
+            <TableRow>
+              {Object.keys(Object.values(props.cardInfo.tcgplayer.prices)[1]).map((x) => (
+                <TableCell variant="head" align="right">
+                  {x}
+                </TableCell>
+              ))}
+            </TableRow>
+
+            <TableRow
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              {Object.values(Object.values(props.cardInfo.tcgplayer.prices)[1]).map((x) => (
+                <TableCell variant="head" align="right">
+                  ${x.toFixed(2)}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableBody>
+        </Table>
+      </Grid>}
+      
       
     </TableContainer>
   );
