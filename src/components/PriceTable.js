@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Grid } from "@mui/material";
+import "./PriceTable.css";
 
 export default function BasicTable(props) {
   const priceLabels = Object.keys(
@@ -24,14 +25,14 @@ export default function BasicTable(props) {
 
       <Grid item sm={12}>
         <Table
-          sx={{ minWidth: 360 }}
+          sx={{ minWidth: 300 }}
           aria-label="simple table"
           key={props.cardInfo.id}
         >
           <TableBody>
             <TableRow>
               {priceLabels.map((x) => (
-                <TableCell variant="head" align="right">
+                <TableCell className="price-text" variant="head" align="right">
                   {x.charAt(0).toUpperCase() +
                     x
                       .slice(1)
@@ -45,7 +46,7 @@ export default function BasicTable(props) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               {priceNormal.map((x) => (
-                <TableCell variant="head" align="right">
+                <TableCell className="price-text" variant="head" align="right">
                   ${x.toFixed(2)}
                 </TableCell>
               ))}
@@ -65,7 +66,11 @@ export default function BasicTable(props) {
                 {Object.keys(
                   Object.values(props.cardInfo.tcgplayer.prices)[1]
                 ).map((x) => (
-                  <TableCell variant="head" align="right">
+                  <TableCell
+                    variant="head"
+                    align="right"
+                    className="price-text"
+                  >
                     {x.charAt(0).toUpperCase() +
                       x
                         .slice(1)
@@ -81,7 +86,11 @@ export default function BasicTable(props) {
                 {Object.values(
                   Object.values(props.cardInfo.tcgplayer.prices)[1]
                 ).map((x) => (
-                  <TableCell variant="head" align="right">
+                  <TableCell
+                    className="price-text"
+                    variant="head"
+                    align="right"
+                  >
                     ${x.toFixed(2)}
                   </TableCell>
                 ))}
