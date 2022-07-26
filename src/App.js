@@ -55,6 +55,7 @@ function App() {
       <img className="tcglogo" src={tcglogo} alt="" onClick={refreshPage}></img>
       <div className="App-header">
         <div className="input-button">
+          {!cardData && <h2>Pokémon Card Prices and Gallery</h2>}
           <FreeSolo
             updateSearchTerm={updateSearchTerm}
             pokeData={allPokemonNames}
@@ -70,7 +71,7 @@ function App() {
         </div>
         {!cardData && (
           <>
-            <h3>Find prices and high quality images of your favourite cards</h3>
+            <p>Find prices and high quality images of your favourite cards</p>
             <img className="sample" src={samplecard} alt=""></img>
           </>
         )}

@@ -13,11 +13,17 @@ function FreeSolo({ pokeData, updateSearchTerm, loading }) {
           onChange={(_, newValue) => {
             updateSearchTerm(newValue);
           }}
-          options={pokeData.map((option) => option.name)}
+          options={pokeData.map(
+            (option) =>
+              option.name.charAt(0).toUpperCase() +
+              option.name
+                .slice(1)
+                .replace(/(-[a-z])/g, (match) => match.toUpperCase())
+          )}
           renderInput={(params) => (
             <TextField
               {...params}
-              label="name"
+              label="Enter Card Name"
               onChange={(event) => updateSearchTerm(event.target.value)}
               disabled={loading}
             />
