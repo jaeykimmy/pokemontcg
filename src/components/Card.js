@@ -26,15 +26,12 @@ export default function BasicModal(props) {
   return (
     <div className="card">
       <Button onClick={handleOpen} className="icon-button">
-        <img className="card-small" src={props.cardSmall} alt=""></img>
+        <img className="card-small" src={props.cardLarge} alt=""></img>
       </Button>
       <div className="icon-set">
         <img className="icon" src={props.cardSetIcon} alt=""></img>
         {props.cardSet} #{props.cardNumber}
       </div>
-      {props.cardInfo.tcgplayer.prices && (
-        <PriceTable cardInfo={props.cardInfo} style={{ width: 360 }} />
-      )}
 
       {/* <div className="prices">
         <div>
@@ -68,7 +65,11 @@ export default function BasicModal(props) {
         className="modal"
       >
         <Box sx={style}>
-          <img className="card-large" src={props.cardLarge} alt=""></img>
+          {/* <img className="card-large" src={props.cardLarge} alt=""></img> */}
+          Price on TCGPlayer
+          {props.cardInfo.tcgplayer.prices && (
+            <PriceTable cardInfo={props.cardInfo} style={{ width: 360 }} />
+          )}
         </Box>
       </Modal>
     </div>

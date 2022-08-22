@@ -17,14 +17,21 @@ function App() {
     border-radius: 7px;
     padding: 20px;
     margin: 10px;
-    font-size: 16px;
+    font-size: 24px;
     :disabled {
       opacity: 0.4;
     }
     :hover {
-      box-shadow: 0 0 10px yellow;
+      box-shadow: 0 0 10px white;
     }
     z-index: 50;
+  `;
+
+  const Searchcard = styled.div`
+    background: white;
+    width: 75%;
+    border-radius: 16px;
+    height 50vh;
   `;
   const [name, setName] = useState("");
   const [cardData, setCardData] = useState("");
@@ -68,61 +75,62 @@ function App() {
 
   return (
     <div className="App">
-      <Background />
+      {/* <Background /> */}
       <img className="tcglogo" src={tcglogo} alt="" onClick={refreshPage}></img>
       <div className="App-header">
-        <div className="input-button">
-          {!cardData && <h2>Pokémon Card Prices and Gallery</h2>}
-          <FreeSolo
-            updateSearchTerm={updateSearchTerm}
-            pokeData={allPokemonNames}
-            loading={loading}
-          />
-          <Button
-            style={{ width: "300px" }}
-            variant="contained"
-            onClick={() => searchPokemon(name)}
-          >
-            Search
-          </Button>
-        </div>
-        {!cardData && (
-          <>
-            <p>Find prices and high quality images of your favourite cards</p>
-            <img className="sample" src={samplecard} alt=""></img>
-          </>
-        )}
-        {loading && <CircularProgress />}
+        <Paper className="searchbox">
+          <div className="input-button">
+            {!cardData && <h2>Pokémon Card Prices and Gallery</h2>}
+            <FreeSolo
+              updateSearchTerm={updateSearchTerm}
+              pokeData={allPokemonNames}
+              loading={loading}
+              value={(e) => e.target.value}
+            />
+            <Button
+              style={{ width: "300px" }}
+              variant="contained"
+              onClick={() => searchPokemon(name)}
+            >
+              Search
+            </Button>
+          </div>
+          {!cardData && (
+            <>
+              <p>Find prices and high quality images of your favourite cards</p>
+              {/* <img className="sample" src={samplecard} alt=""></img> */}
+            </>
+          )}
+          {loading && <CircularProgress />}
+        </Paper>
 
         {cardData && (
-          <Paper className="card-individual">
-            <Grid columnSpacing={2}>
-              {cardData
-                .sort(function (a, b) {
-                  return (
-                    new Date(a.set.releaseDate).valueOf() -
-                    new Date(b.set.releaseDate).valueOf()
-                  );
-                })
-                .reverse()
-                .map((card) => (
-                  <>
-                    {card.tcgplayer && (
-                      <Card
-                        cardSet={card.set.name}
-                        cardNumber={card.number}
-                        cardLarge={card.images.large}
-                        cardSmall={card.images.small}
-                        cardSetIcon={card.set.images.symbol}
-                        cardURL={card.tcgplayer.url}
-                        cardInfo={card}
-                        key={card.id}
-                      />
-                    )}
-                  </>
-                ))}
-            </Grid>
-          </Paper>
+          <Grid columnSpacing={2}>
+            {cardData
+              .sort(function (a, b) {
+                return (
+                  new Date(a.set.releaseDate).valueOf() -
+                  new Date(b.set.releaseDate).valueOf()
+                );
+              })
+              .reverse()
+              .map((card) => (
+                <>
+                  {card.tcgplayer && (
+                    <Card
+                      cardSet={card.set.name}
+                      cardNumber={card.number}
+                      cardLarge={card.images.large}
+                      cardSmall={card.images.small}
+                      cardSetIcon={card.set.images.symbol}
+                      cardURL={card.tcgplayer.url}
+                      cardInfo={card}
+                      key={card.id}
+                    />
+                  )}
+                </>
+              ))}
+          </Grid>
         )}
       </div>
     </div>

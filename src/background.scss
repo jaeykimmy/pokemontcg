@@ -3,12 +3,12 @@
 .wrap {
   perspective-origin: 50% 50%;
 }
-
 .svg {
   position: absolute;
   bottom: -20vh;
   z-index: -1;
   transform-style: preserve-3d;
+  overflow: hidden;
 }
 
 $total: 13;
@@ -20,6 +20,7 @@ $total: 13;
     animation: raise#{$i} 6 + random(15) + s linear infinite;
     animation-delay: random(5) - 5 + s;
     transform: scale(0.3 * $i - 0.6) rotate(random(360) + deg);
+
     @keyframes raise#{$i} {
       to {
         bottom: 120vh;

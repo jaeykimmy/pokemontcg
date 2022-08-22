@@ -26,9 +26,15 @@
   align-items: center;
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);
-  color: white;
 }
-
+.searchbox {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
 .App-link {
   color: #61dafb;
 }
@@ -45,6 +51,7 @@
 .input-button {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   margin: 32px;
 }
