@@ -17,12 +17,11 @@ export default function BasicTable(props) {
   );
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="priceTable">
       {/* {Object.keys(Object.values(props.cardInfo.tcgplayer.prices)[0]).map((x) => <p>{x}</p>)}
       {Object.values(Object.values(props.cardInfo.tcgplayer.prices)[0]).map((x) => <p>{x}</p>)}
       {Object.values(props.cardInfo.tcgplayer.prices)[1] && Object.values(Object.values(props.cardInfo.tcgplayer.prices)[1]).map((x) => <p>{x}</p>)}
        */}
-
       <Grid item sm={12}>
         <Table
           sx={{ minWidth: 300 }}
