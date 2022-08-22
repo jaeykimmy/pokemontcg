@@ -1,0 +1,30 @@
+@import "https://fonts.googleapis.com/css?family=Playfair+Display:400,700i,900i";
+
+.wrap {
+  perspective-origin: 50% 50%;
+}
+
+.svg {
+  position: absolute;
+  bottom: -20vh;
+  z-index: -1;
+  transform-style: preserve-3d;
+}
+
+$total: 13;
+@for $i from 1 through $total {
+  $scale: random(2) - 0.4;
+
+  .svg:nth-child(#{$i}) {
+    left: random(150) * 1% - 30;
+    animation: raise#{$i} 6 + random(15) + s linear infinite;
+    animation-delay: random(5) - 5 + s;
+    transform: scale(0.3 * $i - 0.6) rotate(random(360) + deg);
+    @keyframes raise#{$i} {
+      to {
+        bottom: 120vh;
+        transform: scale(0.3 * $i - 0.6) rotate(random(360) + deg);
+      }
+    }
+  }
+}

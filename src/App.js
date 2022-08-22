@@ -2,14 +2,30 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./components/Card";
-import { Grid, Paper, Button } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import samplecard from "./images/card.png";
 import tcglogo from "./images/tcglogo.png";
-
+import styled from "styled-components";
 import FreeSolo from "./components/PokemonAutoComplete";
+import Background from "./components/Background";
 
 function App() {
+  const Button = styled.button`
+    background: black;
+    color: white;
+    border-radius: 7px;
+    padding: 20px;
+    margin: 10px;
+    font-size: 16px;
+    :disabled {
+      opacity: 0.4;
+    }
+    :hover {
+      box-shadow: 0 0 10px yellow;
+    }
+    z-index: 50;
+  `;
   const [name, setName] = useState("");
   const [cardData, setCardData] = useState("");
   const [allPokemonNames, setAllPokemonNames] = useState([]);
@@ -52,6 +68,7 @@ function App() {
 
   return (
     <div className="App">
+      <Background />
       <img className="tcglogo" src={tcglogo} alt="" onClick={refreshPage}></img>
       <div className="App-header">
         <div className="input-button">
