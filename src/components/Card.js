@@ -28,7 +28,7 @@ export default function BasicModal(props) {
       <Button onClick={handleOpen} className="icon-button">
         <img className="card-small" src={props.cardLarge} alt=""></img>
       </Button>
-      <div className="icon-set">
+      <div className="icon-set" style={{ color: "white" }}>
         <img className="icon" src={props.cardSetIcon} alt=""></img>
         {props.cardSet} #{props.cardNumber}
       </div>

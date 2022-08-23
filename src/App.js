@@ -8,7 +8,8 @@ import samplecard from "./images/card.png";
 import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
 import FreeSolo from "./components/PokemonAutoComplete";
-import Background from "./components/Background";
+// import Background from "./components/Background";
+import "./components/background.scss";
 
 function App() {
   const Button = styled.button`
@@ -27,12 +28,6 @@ function App() {
     z-index: 50;
   `;
 
-  const Searchcard = styled.div`
-    background: white;
-    width: 75%;
-    border-radius: 16px;
-    height 50vh;
-  `;
   const [name, setName] = useState("");
   const [cardData, setCardData] = useState("");
   const [allPokemonNames, setAllPokemonNames] = useState([]);
@@ -75,7 +70,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Background /> */}
       <img className="tcglogo" src={tcglogo} alt="" onClick={refreshPage}></img>
       <div className="App-header">
         <Paper className="searchbox">
@@ -97,7 +91,10 @@ function App() {
           </div>
           {!cardData && (
             <>
-              <p>Find prices and high quality images of your favourite cards</p>
+              <p>
+                Find prices and high quality images <br />
+                of your favourite cards
+              </p>
               {/* <img className="sample" src={samplecard} alt=""></img> */}
             </>
           )}
