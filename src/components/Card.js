@@ -22,7 +22,7 @@ export default function BasicModal(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // console.log(props)
+  console.log(props);
   return (
     <div className="card">
       <Button onClick={handleOpen} className="icon-button">
@@ -64,9 +64,16 @@ export default function BasicModal(props) {
         aria-describedby="modal-modal-description"
         className="modal"
       >
-        <Box sx={style}>
+        <Box sx={style} style={{ color: "black", textAlign: "center" }}>
           {/* <img className="card-large" src={props.cardLarge} alt=""></img> */}
-          Price on TCGPlayer
+          <b>{props.cardInfo.name}</b>
+          <br />
+          Set: {props.cardInfo.set.name} <br />
+          Artist: {props.cardInfo.artist}
+          <br />
+          Release Date: {props.cardInfo.set.releaseDate}
+          <br />
+          Price on TCGPlayer:
           {props.cardInfo.tcgplayer.prices && (
             <PriceTable cardInfo={props.cardInfo} style={{ width: 360 }} />
           )}
