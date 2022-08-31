@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.26",
     "awesome-typescript-loader": "^5.2.1",
     "eslint": "^8.19.0",
     "gh-pages": "^4.0.0",

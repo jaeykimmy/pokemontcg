@@ -44,11 +44,11 @@ function App() {
       });
   }, []);
 
-  const updateSearchTerm = (pokemonName) => {
+  const updateSearchTerm = (pokemonName: string) => {
     setName(pokemonName);
   };
 
-  const searchPokemon = (searchTerm) => {
+  const searchPokemon = (searchTerm: string) => {
     setLoading(true);
 
     axios
@@ -65,7 +65,24 @@ function App() {
   const refreshPage = () => {
     window.location.reload();
   };
-
+  console.log(cardData);
+  interface CardData {
+    tcgplayer: {
+      url: string;
+    };
+    set: {
+      name: string;
+      images: {
+        symbol: string;
+      };
+    };
+    number: number;
+    images: {
+      small: string;
+      large: string;
+    };
+    id: string;
+  }
   return (
     <div className="App">
       <img className="tcglogo" src={tcglogo} alt="" onClick={refreshPage}></img>
@@ -81,7 +98,7 @@ function App() {
             />
             <Button
               style={{ width: "300px" }}
-              variant="contained"
+              // variant="contained"
               onClick={() => searchPokemon(name)}
             >
               Search
@@ -98,7 +115,6 @@ function App() {
           )}
           {loading && <CircularProgress />}
         </Paper>
-
         {cardData && (
           <Grid columnSpacing={2}>
             {cardData
@@ -109,7 +125,8 @@ function App() {
                 );
               })
               .reverse()
-              .map((card: any | undefined) => (
+
+              .map((card: CardData) => (
                 <>
                   {card.tcgplayer && (
                     <Card
