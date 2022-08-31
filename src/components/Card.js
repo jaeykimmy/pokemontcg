@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import "./Card.css";
+import "./Card.scss";
 import PriceTable from "./PriceTable.js";
 
 const style = {
