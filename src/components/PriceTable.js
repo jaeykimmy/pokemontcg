@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Grid } from "@mui/material";
-import "./PriceTable.css";
+import "./PriceTable.scss";
 
 export default function BasicTable(props) {
   const priceLabels = Object.keys(

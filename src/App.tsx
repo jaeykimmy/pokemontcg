@@ -27,7 +27,7 @@ function App() {
   `;
 
   const [name, setName] = useState("");
-  const [cardData, setCardData] = useState("");
+  const [cardData, setCardData] = useState([]);
   const [allPokemonNames, setAllPokemonNames] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -72,12 +72,12 @@ function App() {
       <div className="App-header">
         <Paper className="searchbox">
           <div className="input-button">
-            {!cardData && <h2>Pokémon Card Prices and Gallery</h2>}
+            {cardData.length === 0 && <h2>Pokémon Card Prices and Gallery</h2>}
             <FreeSolo
               updateSearchTerm={updateSearchTerm}
               pokeData={allPokemonNames}
               loading={loading}
-              value={(e) => e.target.value}
+              // value={(e) => e.target.value}
             />
             <Button
               style={{ width: "300px" }}
@@ -87,7 +87,7 @@ function App() {
               Search
             </Button>
           </div>
-          {!cardData && (
+          {cardData.length === 0 && (
             <>
               <p>
                 Find prices and high quality images <br />
@@ -102,14 +102,14 @@ function App() {
         {cardData && (
           <Grid columnSpacing={2}>
             {cardData
-              .sort(function (a, b) {
+              .sort(function (a: any, b: any) {
                 return (
                   new Date(a.set.releaseDate).valueOf() -
                   new Date(b.set.releaseDate).valueOf()
                 );
               })
               .reverse()
-              .map((card) => (
+              .map((card: any | undefined) => (
                 <>
                   {card.tcgplayer && (
                     <Card
