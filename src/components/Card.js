@@ -22,7 +22,7 @@ export default function BasicModal(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  console.log(props);
+  // console.log(props);
   return (
     <div className="card">
       <Button onClick={handleOpen} className="icon-button">

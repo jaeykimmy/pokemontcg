@@ -4,11 +4,9 @@ import axios from "axios";
 import Card from "./components/Card";
 import { Grid, Paper } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import samplecard from "./images/card.png";
 import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
 import FreeSolo from "./components/PokemonAutoComplete";
-// import Background from "./components/Background";
 import "./components/background.scss";
 
 function App() {
