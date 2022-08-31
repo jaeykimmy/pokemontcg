@@ -8,7 +8,32 @@ import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
 import FreeSolo from "./components/PokemonAutoComplete";
 import "./components/background.scss";
-
+export interface CardData {
+  cardInfo: {
+    id: number;
+    tcgplayer: {
+      url: string;
+      prices: number;
+    };
+  };
+  tcgplayer: {
+    url: string;
+    prices: any;
+  };
+  set: {
+    name: string;
+    images: {
+      symbol: string;
+    };
+    releaseDate: string;
+  };
+  number: number;
+  images: {
+    small: string;
+    large: string;
+  };
+  id: string;
+}
 function App() {
   const Button = styled.button`
     background: black;
@@ -66,24 +91,7 @@ function App() {
     window.location.reload();
   };
   console.log(cardData);
-  interface CardData {
-    tcgplayer: {
-      url: string;
-    };
-    set: {
-      name: string;
-      images: {
-        symbol: string;
-      };
-      releaseDate: string;
-    };
-    number: number;
-    images: {
-      small: string;
-      large: string;
-    };
-    id: string;
-  }
+
   return (
     <div className="App">
       <img className="tcglogo" src={tcglogo} alt="" onClick={refreshPage}></img>

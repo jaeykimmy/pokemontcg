@@ -7,8 +7,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Grid } from "@mui/material";
 import "./PriceTable.scss";
+import { CardData } from "App";
 
-export default function BasicTable(props) {
+export default function BasicTable(props: CardData) {
   const priceLabels = Object.keys(
     Object.values(props.cardInfo.tcgplayer.prices)[0]
   );
@@ -44,7 +45,7 @@ export default function BasicTable(props) {
             <TableRow
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              {priceNormal.map((x) => (
+              {priceNormal.map((x: any) => (
                 <TableCell className="price-text" variant="head" align="right">
                   ${x.toFixed(2)}
                 </TableCell>
@@ -84,7 +85,7 @@ export default function BasicTable(props) {
               >
                 {Object.values(
                   Object.values(props.cardInfo.tcgplayer.prices)[1]
-                ).map((x) => (
+                ).map((x: any) => (
                   <TableCell
                     className="price-text"
                     variant="head"

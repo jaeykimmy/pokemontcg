@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import "./Card.scss";
-import PriceTable from "./PriceTable.js";
+import PriceTable from "./PriceTable.tsx";
 
 const style = {
   position: "absolute",
