@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import "./Card.scss";
-import PriceTable from "./PriceTable.tsx";
+import PriceTable from "./PriceTable";
 
 const style = {
   position: "absolute",
@@ -75,7 +75,26 @@ export default function BasicModal(props) {
           <br />
           Price on TCGPlayer:
           {props.cardInfo.tcgplayer.prices && (
-            <PriceTable cardInfo={props.cardInfo} style={{ width: 360 }} />
+            <PriceTable
+              cardInfo={props.cardInfo}
+              tcgplayer={{
+                url: "",
+                prices: undefined,
+              }}
+              set={{
+                name: "",
+                images: {
+                  symbol: "",
+                },
+                releaseDate: "",
+              }}
+              number={0}
+              images={{
+                small: "",
+                large: "",
+              }}
+              id={""}
+            />
           )}
         </Box>
       </Modal>
