@@ -75,6 +75,7 @@ function App() {
       images: {
         symbol: string;
       };
+      releaseDate: string;
     };
     number: number;
     images: {
@@ -118,7 +119,7 @@ function App() {
         {cardData && (
           <Grid columnSpacing={2}>
             {cardData
-              .sort(function (a: any, b: any) {
+              .sort(function (a: CardData, b: CardData) {
                 return (
                   new Date(a.set.releaseDate).valueOf() -
                   new Date(b.set.releaseDate).valueOf()
