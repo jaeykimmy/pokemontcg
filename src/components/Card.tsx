@@ -17,7 +17,8 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal(props) {
+// change props to be CardData similar to App.tsx
+export default function BasicModal(props: any) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -33,26 +34,6 @@ export default function BasicModal(props) {
         {props.cardSet} #{props.cardNumber}
       </div>
 
-      {/* <div className="prices">
-        <div>
-
-          {Object.values(props.cardInfo.tcgplayer.prices).map((x) =>
-            Object.keys(x).map((x) => (
-              <p>
-                {(x.charAt(0).toUpperCase() + x.slice(1))
-                  .replace(/([A-Z])/g, " $1")
-                  .trim()}
-                :
-              </p>
-            ))
-          )}
-        </div>
-        <div>
-          {Object.values(props.cardInfo.tcgplayer.prices).map((x) =>
-            Object.values(x).map((x) => <p>${x}</p>)
-          )}
-        </div>
-      </div> */}
       <Button variant="contained" href={props.cardURL} target="_blank">
         TCGPlayer Price
       </Button>
@@ -94,6 +75,11 @@ export default function BasicModal(props) {
                 large: "",
               }}
               id={""}
+              cardURL={""}
+              cardLarge={""}
+              cardSetIcon={""}
+              cardSet={""}
+              cardNumber={0}
             />
           )}
         </Box>

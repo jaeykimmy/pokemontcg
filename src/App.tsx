@@ -15,7 +15,18 @@ export interface CardData {
       url: string;
       prices: number;
     };
+    name: string;
+    set: {
+      name: string;
+      releaseDate: string;
+    };
+    artist: string;
   };
+  cardURL: string;
+  cardLarge: string;
+  cardSetIcon: string;
+  cardSet: string;
+  cardNumber: number;
   tcgplayer: {
     url: string;
     prices: any;
@@ -34,23 +45,22 @@ export interface CardData {
   };
   id: string;
 }
+const Button = styled.button`
+  background: black;
+  color: white;
+  border-radius: 7px;
+  padding: 20px;
+  margin: 10px;
+  font-size: 24px;
+  :disabled {
+    opacity: 0.4;
+  }
+  :hover {
+    box-shadow: 0 0 10px white;
+  }
+  z-index: 50;
+`;
 function App() {
-  const Button = styled.button`
-    background: black;
-    color: white;
-    border-radius: 7px;
-    padding: 20px;
-    margin: 10px;
-    font-size: 24px;
-    :disabled {
-      opacity: 0.4;
-    }
-    :hover {
-      box-shadow: 0 0 10px white;
-    }
-    z-index: 50;
-  `;
-
   const [name, setName] = useState("");
   const [cardData, setCardData] = useState([]);
   const [allPokemonNames, setAllPokemonNames] = useState([]);
@@ -113,6 +123,7 @@ function App() {
               Search
             </Button>
           </div>
+          {/* this is for when there is no data yet */}
           {cardData.length === 0 && (
             <>
               <p>
@@ -124,6 +135,7 @@ function App() {
           )}
           {loading && <CircularProgress />}
         </Paper>
+        {/* if there is data, organize info like so */}
         {cardData && (
           <Grid columnSpacing={2}>
             {cardData

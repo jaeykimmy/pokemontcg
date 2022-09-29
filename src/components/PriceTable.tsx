@@ -9,6 +9,8 @@ import "./PriceTable.scss";
 import { CardData } from "App";
 
 export default function BasicTable(props: CardData) {
+  console.log(props);
+  // went with turn object into array solution due to difference in key names and length of keys
   const priceLabels = Object.keys(
     Object.values(props.cardInfo.tcgplayer.prices)[0]
   );
@@ -18,10 +20,6 @@ export default function BasicTable(props: CardData) {
 
   return (
     <TableContainer component={Paper} className="priceTable">
-      {/* {Object.keys(Object.values(props.cardInfo.tcgplayer.prices)[0]).map((x) => <p>{x}</p>)}
-      {Object.values(Object.values(props.cardInfo.tcgplayer.prices)[0]).map((x) => <p>{x}</p>)}
-      {Object.values(props.cardInfo.tcgplayer.prices)[1] && Object.values(Object.values(props.cardInfo.tcgplayer.prices)[1]).map((x) => <p>{x}</p>)}
-       */}
       <Grid item sm={12}>
         <Table
           sx={{ minWidth: 300 }}
@@ -45,7 +43,11 @@ export default function BasicTable(props: CardData) {
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               {priceNormal.map((x: any) => (
-                <TableCell className="price-text" variant="head" align="right">
+                <TableCell
+                  className="price-dollar"
+                  variant="head"
+                  align="right"
+                >
                   ${x.toFixed(2)}
                 </TableCell>
               ))}
@@ -53,6 +55,7 @@ export default function BasicTable(props: CardData) {
           </TableBody>
         </Table>
       </Grid>
+      {/* if there is a special variant of the card, then render a price table for that as well */}
       {Object.values(props.cardInfo.tcgplayer.prices)[1] && (
         <Grid item sm={12}>
           <Table
@@ -86,7 +89,7 @@ export default function BasicTable(props: CardData) {
                   Object.values(props.cardInfo.tcgplayer.prices)[1]
                 ).map((x: any) => (
                   <TableCell
-                    className="price-text"
+                    className="price-dollar"
                     variant="head"
                     align="right"
                   >
