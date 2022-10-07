@@ -63,6 +63,7 @@ const Button = styled.button`
 function App() {
   const [name, setName] = useState("");
   const [cardData, setCardData] = useState([]);
+  const [setData, setSetData] = useState([]);
   const [allPokemonNames, setAllPokemonNames] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -97,6 +98,19 @@ function App() {
       });
   };
 
+  const searchSet = (searchTerm) => {
+    setLoading(true);
+    axios
+      .get(`https://api.pokemontcg.io/v2/cards?q=set.id:swsh1`)
+      .then((res) => {
+        setSetData(res.data.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  };
+
   const refreshPage = () => {
     window.location.reload();
   };
@@ -122,6 +136,7 @@ function App() {
             >
               Search
             </Button>
+            <Button onClick={() => searchSet(name)}>Set Search</Button>
           </div>
           {/* this is for when there is no data yet */}
           {cardData.length === 0 && (
@@ -139,6 +154,35 @@ function App() {
         {cardData && (
           <Grid columnSpacing={2}>
             {cardData
+              .sort(function (a: CardData, b: CardData) {
+                return (
+                  new Date(a.set.releaseDate).valueOf() -
+                  new Date(b.set.releaseDate).valueOf()
+                );
+              })
+              .reverse()
+
+              .map((card: CardData) => (
+                <>
+                  {card.tcgplayer && (
+                    <Card
+                      cardSet={card.set.name}
+                      cardNumber={card.number}
+                      cardLarge={card.images.large}
+                      cardSmall={card.images.small}
+                      cardSetIcon={card.set.images.symbol}
+                      cardURL={card.tcgplayer.url}
+                      cardInfo={card}
+                      key={card.id}
+                    />
+                  )}
+                </>
+              ))}
+          </Grid>
+        )}
+        {setData && (
+          <Grid columnSpacing={2}>
+            {setData
               .sort(function (a: CardData, b: CardData) {
                 return (
                   new Date(a.set.releaseDate).valueOf() -
