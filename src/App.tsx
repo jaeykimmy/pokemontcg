@@ -62,7 +62,7 @@ const Button = styled.button`
 `;
 function App() {
   const [name, setName] = useState("");
-  const [set, setSet] = useState("");
+  const [set, setSet] = useState({});
   const [cardData, setCardData] = useState([]);
   const [setData, setSetData] = useState([]);
   const [allSetNames, setAllSetNames] = useState([]);
@@ -94,15 +94,15 @@ function App() {
         setLoading(false);
       });
   }, []);
-  // console.log(allSetNames);
-  const newSetNames = allSetNames.map((x) => (x["label"] = x["id"]));
+  console.log(allSetNames);
+  const newSetNames = allSetNames.map((x) => {
+    return { label: x["id"], name: x["name"] };
+  });
+
   console.log(newSetNames);
 
   const updateSearchTerm = (pokemonName: string) => {
     setName(pokemonName);
-  };
-  const updateSetSearchTerm = (set: string) => {
-    setSet(set);
   };
 
   const searchPokemon = (searchTerm: string) => {
@@ -165,8 +165,8 @@ function App() {
               id="combo-box-demo"
               options={newSetNames}
               sx={{ width: 300 }}
-              value={set}
-              onChange={(event, newValue: any) => setSet(newValue)}
+              onChange={(event, newValue: any) => setSet(newValue.label)}
+              getOptionLabel={(option) => option.name}
               renderInput={(params) => <TextField {...params} label="Set" />}
             />
             <Button onClick={() => searchSet(set)}>Set Search</Button>
