@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./components/Card";
-import { Grid, Paper, TextField } from "@mui/material";
+import { Grid, Paper, TextField, Autocomplete } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
@@ -65,6 +65,7 @@ function App() {
   const [set, setSet] = useState("");
   const [cardData, setCardData] = useState([]);
   const [setData, setSetData] = useState([]);
+  const [allSetNames, setAllSetNames] = useState([]);
   const [allPokemonNames, setAllPokemonNames] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -80,6 +81,22 @@ function App() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`https://api.pokemontcg.io/v2/sets`)
+      .then((res) => {
+        setAllSetNames(res.data.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
+  // console.log(allSetNames);
+  const newSetNames = allSetNames.map((x) => (x["label"] = x["id"]));
+  console.log(newSetNames);
 
   const updateSearchTerm = (pokemonName: string) => {
     setName(pokemonName);
@@ -142,7 +159,16 @@ function App() {
             >
               Search
             </Button>
-            <TextField onChange={(e) => setSet(e.target.value)}></TextField>
+            {/* <TextField onChange={(e) => setSet(e.target.value)}></TextField> */}
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={newSetNames}
+              sx={{ width: 300 }}
+              value={set}
+              onChange={(event, newValue: any) => setSet(newValue)}
+              renderInput={(params) => <TextField {...params} label="Set" />}
+            />
             <Button onClick={() => searchSet(set)}>Set Search</Button>
           </div>
           {/* this is for when there is no data yet */}
