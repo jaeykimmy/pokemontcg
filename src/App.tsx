@@ -101,7 +101,9 @@ function App() {
   const searchSet = (searchTerm) => {
     setLoading(true);
     axios
-      .get(`https://api.pokemontcg.io/v2/cards?q=set.id:swsh1`)
+      .get(
+        `https://api.pokemontcg.io/v2/cards?q=set.id:swsh11&orderBy=-tcgplayer.prices.holofoil.market`
+      )
       .then((res) => {
         setSetData(res.data.data);
         setLoading(false);
