@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./components/Card";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, TextField } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
@@ -62,6 +62,7 @@ const Button = styled.button`
 `;
 function App() {
   const [name, setName] = useState("");
+  const [set, setSet] = useState("");
   const [cardData, setCardData] = useState([]);
   const [setData, setSetData] = useState([]);
   const [allPokemonNames, setAllPokemonNames] = useState([]);
@@ -83,6 +84,9 @@ function App() {
   const updateSearchTerm = (pokemonName: string) => {
     setName(pokemonName);
   };
+  const updateSetSearchTerm = (set: string) => {
+    setSet(set);
+  };
 
   const searchPokemon = (searchTerm: string) => {
     setLoading(true);
@@ -102,7 +106,7 @@ function App() {
     setLoading(true);
     axios
       .get(
-        `https://api.pokemontcg.io/v2/cards?q=set.id:swsh11&orderBy=-tcgplayer.prices.holofoil.market`
+        `https://api.pokemontcg.io/v2/cards?q=set.id:${searchTerm}&orderBy=-tcgplayer.prices.holofoil.market`
       )
       .then((res) => {
         setSetData(res.data.data);
@@ -138,7 +142,8 @@ function App() {
             >
               Search
             </Button>
-            <Button onClick={() => searchSet(name)}>Set Search</Button>
+            <TextField onChange={(e) => setSet(e.target.value)}></TextField>
+            <Button onClick={() => searchSet(set)}>Set Search</Button>
           </div>
           {/* this is for when there is no data yet */}
           {cardData.length === 0 && (
