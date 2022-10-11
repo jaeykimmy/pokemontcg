@@ -94,12 +94,12 @@ function App() {
         setLoading(false);
       });
   }, []);
-  console.log(allSetNames);
+  // console.log(allSetNames);
   const newSetNames = allSetNames.map((x) => {
     return { label: x["id"], name: x["name"] };
   });
 
-  console.log(newSetNames);
+  // console.log(newSetNames);
 
   const updateSearchTerm = (pokemonName: string) => {
     setName(pokemonName);
@@ -163,7 +163,7 @@ function App() {
             <Autocomplete
               disablePortal
               id="combo-box-demo"
-              options={newSetNames}
+              options={newSetNames.reverse()}
               sx={{ width: 300 }}
               onChange={(event, newValue: any) => setSet(newValue.label)}
               getOptionLabel={(option) => option.name}
@@ -235,7 +235,7 @@ function App() {
                       cardSetIcon={card.set.images.symbol}
                       cardURL={card.tcgplayer.url}
                       cardInfo={card}
-                      key={card.id}
+                      key={card.tcgplayer.url}
                     />
                   )}
                 </>
