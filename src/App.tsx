@@ -87,7 +87,7 @@ function App() {
     axios
       .get(`https://api.pokemontcg.io/v2/sets`)
       .then((res) => {
-        setAllSetNames(res.data.data);
+        setAllSetNames(res.data.data.reverse());
         setLoading(false);
       })
       .catch(() => {
@@ -123,10 +123,10 @@ function App() {
     setLoading(true);
     axios
       .get(
-        `https://api.pokemontcg.io/v2/cards?q=set.id:${searchTerm}&orderBy=-tcgplayer.prices.holofoil.market`
+        `https://api.pokemontcg.io/v2/cards?q=set.id:${searchTerm}&orderBy=tcgplayer.prices.holofoil.market`
       )
       .then((res) => {
-        setSetData(res.data.data);
+        setSetData(res.data.data.reverse());
         setLoading(false);
       })
       .catch(() => {
@@ -157,19 +157,21 @@ function App() {
               // variant="contained"
               onClick={() => searchPokemon(name)}
             >
-              Search
+              Card Search
             </Button>
             {/* <TextField onChange={(e) => setSet(e.target.value)}></TextField> */}
             <Autocomplete
               disablePortal
               id="combo-box-demo"
-              options={newSetNames.reverse()}
+              options={newSetNames}
               sx={{ width: 300 }}
               onChange={(event, newValue: any) => setSet(newValue.label)}
               getOptionLabel={(option) => option.name}
               renderInput={(params) => <TextField {...params} label="Set" />}
             />
-            <Button onClick={() => searchSet(set)}>Set Search</Button>
+            <Button onClick={() => searchSet(set)} style={{ width: "300px" }}>
+              Set Search
+            </Button>
           </div>
           {/* this is for when there is no data yet */}
           {cardData.length === 0 && (
