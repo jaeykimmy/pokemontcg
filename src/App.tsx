@@ -8,6 +8,7 @@ import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
 import FreeSolo from "./components/PokemonAutoComplete";
 import "./components/background.scss";
+
 export interface CardData {
   cardInfo: {
     id: number;
@@ -134,6 +135,14 @@ function App() {
     }
   };
 
+  const clearChangeIntoSetSearch = () => {
+    setCardSearchTrue(false);
+    setCardData([]);
+  };
+  const clearChangeIntoCardSearch = () => {
+    setCardSearchTrue(true);
+    setSetData([]);
+  };
   const refreshPage = () => {
     window.location.reload();
   };
@@ -161,7 +170,7 @@ function App() {
                 >
                   Card Search
                 </StyledButton>
-                <Button onClick={() => setCardSearchTrue(false)}>
+                <Button onClick={clearChangeIntoSetSearch}>
                   Search Set Instead
                 </Button>
               </>
@@ -186,7 +195,7 @@ function App() {
                 >
                   Set Search
                 </StyledButton>
-                <Button onClick={() => setCardSearchTrue(true)}>
+                <Button onClick={clearChangeIntoCardSearch}>
                   Search Card Instead
                 </Button>
               </>
