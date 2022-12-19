@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./components/Card";
-import { Grid, Paper, TextField, Autocomplete } from "@mui/material";
+import { Grid, Paper, TextField, Autocomplete, Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
@@ -45,7 +45,7 @@ export interface CardData {
   };
   id: string;
 }
-const Button = styled.button`
+const StyledButton = styled.button`
   background: black;
   color: white;
   border-radius: 7px;
@@ -68,6 +68,7 @@ function App() {
   const [allSetNames, setAllSetNames] = useState([]);
   const [allPokemonNames, setAllPokemonNames] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [cardSearchTrue, setCardSearchTrue] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -145,32 +146,51 @@ function App() {
         <Paper className="searchbox">
           <div className="input-button">
             {cardData.length === 0 && <h2>Pokémon Card Prices and Gallery</h2>}
-            <FreeSolo
-              updateSearchTerm={updateSearchTerm}
-              pokeData={allPokemonNames}
-              loading={loading}
-              // value={(e) => e.target.value}
-            />
-            <Button
-              style={{ width: "300px" }}
-              // variant="contained"
-              onClick={() => searchPokemon(name)}
-            >
-              Card Search
-            </Button>
+            {cardSearchTrue === true && (
+              <>
+                <FreeSolo
+                  updateSearchTerm={updateSearchTerm}
+                  pokeData={allPokemonNames}
+                  loading={loading}
+                  // value={(e) => e.target.value}
+                />
+                <StyledButton
+                  style={{ width: "300px" }}
+                  // variant="contained"
+                  onClick={() => searchPokemon(name)}
+                >
+                  Card Search
+                </StyledButton>
+                <Button onClick={() => setCardSearchTrue(false)}>
+                  Search Set Instead
+                </Button>
+              </>
+            )}
             {/* <TextField onChange={(e) => setSet(e.target.value)}></TextField> */}
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={newSetNames}
-              sx={{ width: 300 }}
-              onChange={(event, newValue: any) => setSet(newValue.label)}
-              getOptionLabel={(option) => option.name}
-              renderInput={(params) => <TextField {...params} label="Set" />}
-            />
-            <Button onClick={() => searchSet(set)} style={{ width: "300px" }}>
-              Set Search
-            </Button>
+            {cardSearchTrue === false && (
+              <>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={newSetNames}
+                  sx={{ width: 300 }}
+                  onChange={(event, newValue: any) => setSet(newValue.label)}
+                  getOptionLabel={(option) => option.name}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Set" />
+                  )}
+                />
+                <StyledButton
+                  onClick={() => searchSet(set)}
+                  style={{ width: "300px" }}
+                >
+                  Set Search
+                </StyledButton>
+                <Button onClick={() => setCardSearchTrue(true)}>
+                  Search Card Instead
+                </Button>
+              </>
+            )}
           </div>
           {/* this is for when there is no data yet */}
           {cardData.length === 0 && (
