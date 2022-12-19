@@ -119,19 +119,18 @@ function App() {
       });
   };
 
-  const searchSet = (searchTerm) => {
+  const searchSet = async (searchTerm) => {
     setLoading(true);
-    axios
-      .get(
+    try {
+      const res = await axios.get(
         `https://api.pokemontcg.io/v2/cards?q=set.id:${searchTerm}&orderBy=tcgplayer.prices.holofoil.market`
-      )
-      .then((res) => {
-        setSetData(res.data.data.reverse());
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+      );
+      setSetData(res.data.data.reverse());
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const refreshPage = () => {
