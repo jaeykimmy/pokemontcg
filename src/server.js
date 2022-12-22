@@ -35,12 +35,14 @@ app.get("/pokemontcg/favorites", (req, res) => {
 app.post("/pokemontcg/favorites", (req, res) => {
   const item_id = req.body.item_id;
   const isFavorite = req.body.isFavorite;
+  const price = req.body.price;
+
   console.log(req.body);
   console.log(item_id, isFavorite);
   res.header("Access-Control-Allow-Origin", "*");
   client.query(
-    "INSERT INTO favorites (item_id, is_favorite) VALUES ($1, $2) ON CONFLICT (item_id) DO UPDATE SET is_favorite = $2",
-    [item_id, isFavorite],
+    `INSERT INTO favorites (item_id, is_favorite, price) VALUES ($1, $2, $3) ON CONFLICT (item_id) DO UPDATE SET is_favorite = $2`,
+    [item_id, isFavorite, price],
     (err, result) => {
       if (err) {
         console.error("Error executing query:", err.stack);
