@@ -7,6 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
 import FreeSolo from "./components/PokemonAutoComplete";
+import { FavoriteButton } from "components/FavoriteButton";
 import "./components/background.scss";
 
 export interface CardData {
@@ -228,16 +229,18 @@ function App() {
               .map((card: CardData) => (
                 <>
                   {card.tcgplayer && (
-                    <Card
-                      cardSet={card.set.name}
-                      cardNumber={card.number}
-                      cardLarge={card.images.large}
-                      cardSmall={card.images.small}
-                      cardSetIcon={card.set.images.symbol}
-                      cardURL={card.tcgplayer.url}
-                      cardInfo={card}
-                      key={card.id}
-                    />
+                    <>
+                      <Card
+                        cardSet={card.set.name}
+                        cardNumber={card.number}
+                        cardLarge={card.images.large}
+                        cardSmall={card.images.small}
+                        cardSetIcon={card.set.images.symbol}
+                        cardURL={card.tcgplayer.url}
+                        cardInfo={card}
+                        key={card.id}
+                      />
+                    </>
                   )}
                 </>
               ))}
@@ -257,16 +260,18 @@ function App() {
               .map((card: CardData) => (
                 <>
                   {card.tcgplayer && (
-                    <Card
-                      cardSet={card.set.name}
-                      cardNumber={card.number}
-                      cardLarge={card.images.large}
-                      cardSmall={card.images.small}
-                      cardSetIcon={card.set.images.symbol}
-                      cardURL={card.tcgplayer.url}
-                      cardInfo={card}
-                      key={card.tcgplayer.url}
-                    />
+                    <>
+                      <Card
+                        cardSet={card.set.name}
+                        cardNumber={card.number}
+                        cardLarge={card.images.large}
+                        cardSmall={card.images.small}
+                        cardSetIcon={card.set.images.symbol}
+                        cardURL={card.tcgplayer.url}
+                        cardInfo={card}
+                        key={card.tcgplayer.url}
+                      />
+                    </>
                   )}
                 </>
               ))}
