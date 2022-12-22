@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import "./Card.scss";
 import PriceTable from "./PriceTable";
-
+import FavoriteButton from "components/FavoriteButton";
 const style = {
   position: "absolute",
   top: "50%",
@@ -23,7 +23,7 @@ export default function BasicModal(props: any) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // console.log(props);
+  // console.log(props.cardInfo);
   return (
     <div className="card">
       <Button onClick={handleOpen} className="icon-button">
@@ -37,7 +37,7 @@ export default function BasicModal(props: any) {
       <Button variant="contained" href={props.cardURL} target="_blank">
         TCGPlayer Price
       </Button>
-
+      <FavoriteButton cardInfo={props.cardInfo} />
       <Modal
         open={open}
         onClose={handleClose}

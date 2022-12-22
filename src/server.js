@@ -1,8 +1,10 @@
 const express = require("express");
 const { Client } = require("pg");
-
+const cors = require("cors");
 const app = express();
 
+app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" }));
 const client = new Client({
   user: "jaeyoung",
   host: "localhost",
@@ -18,7 +20,7 @@ client.connect((err) => {
   }
 });
 
-app.get("/favorites", (req, res) => {
+app.get("/pokemontcg/favorites", (req, res) => {
   client.query("SELECT * FROM favorites", (err, result) => {
     if (err) {
       console.log("error");
@@ -30,19 +32,25 @@ app.get("/favorites", (req, res) => {
   });
 });
 
-// export function addFavorite(itemId) {
-//   client.query(
-//     "INSERT INTO favorites (item_id, is_favorite) VALUES ($1, true)",
-//     [itemId],
-//     (err, res) => {
-//       if (err) {
-//         console.error("Error executing query:", err.stack);
-//       } else {
-//         console.log("Query completed successfully.");
-//       }
-//     }
-//   );
-// }
+app.post("/pokemontcg/favorites", (req, res) => {
+  const item_id = req.body.item_id;
+  const isFavorite = req.body.isFavorite;
+  console.log(req.body);
+  console.log(item_id, isFavorite);
+  res.header("Access-Control-Allow-Origin", "*");
+  client.query(
+    "INSERT INTO favorites (item_id, is_favorite) VALUES ($1, $2) ON CONFLICT (item_id) DO UPDATE SET is_favorite = $2",
+    [item_id, isFavorite],
+    (err, result) => {
+      if (err) {
+        console.error("Error executing query:", err.stack);
+        res.status(500).send("Error saving favorite");
+      } else {
+        res.send("Favorite saved");
+      }
+    }
+  );
+});
 
 const port = 8080;
 

@@ -7,7 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import tcglogo from "./images/tcglogo.png";
 import styled from "styled-components";
 import FreeSolo from "./components/PokemonAutoComplete";
-import { FavoriteButton } from "components/FavoriteButton";
+
 import "./components/background.scss";
 
 export interface CardData {

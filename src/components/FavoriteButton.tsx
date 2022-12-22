@@ -1,39 +1,24 @@
-import { Client } from "pg";
+import axios from "axios";
 import { useState } from "react";
-const client = new Client({
-  user: "your_username",
-  host: "localhost",
-  database: "your_database",
-  password: "your_password",
-  port: 5432,
-});
+export default function FavoriteButton({ cardInfo }) {
+  console.log(cardInfo);
+  const [itemId, setItemId] = useState(cardInfo.id);
+  const [isFavorite, setIsFavorite] = useState(false);
 
-client.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err.stack);
-  } else {
-    console.log("Connected to the database.");
-  }
-});
-
-export function FavoriteButton(): JSX.Element {
-  const [itemId, setItemId] = useState<number | null>(null);
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
-
-  function handleClick(): void {
-    client.query(
-      "INSERT INTO favorites (item_id, is_favorite) VALUES ($1, $2) ON CONFLICT (item_id) DO UPDATE SET is_favorite = $2",
-      [itemId, !isFavorite],
-      (err, res) => {
-        if (err) {
-          console.error("Error executing query:", err.stack);
-        } else {
-          setIsFavorite(!isFavorite);
-          console.log("Query completed successfully.");
-        }
-      }
-    );
-  }
+  const handleClick = () => {
+    axios
+      .post("http://localhost:8080/pokemontcg/favorites", {
+        item_id: itemId,
+        isFavorite: !isFavorite,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setIsFavorite(!isFavorite);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <button onClick={handleClick}>
