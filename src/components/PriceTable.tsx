@@ -6,7 +6,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Grid } from "@mui/material";
 import "./PriceTable.scss";
-import { CardData } from "App";
+import { CardData } from "./Home";
 
 export default function BasicTable(props: CardData) {
   console.log(props);
