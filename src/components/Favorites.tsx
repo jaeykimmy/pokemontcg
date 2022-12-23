@@ -19,7 +19,6 @@ export default function Favorites() {
       {data.map((x) => (
         <>
           <img src={x.image} alt=""></img>
-          <p>{x.price}</p>
         </>
       ))}
       <div>
