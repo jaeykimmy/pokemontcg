@@ -7,7 +7,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="favorite" element={<Favorites />}></Route>
+        <Route path="favorites" element={<Favorites />}></Route>
         <Route path="" element={<Home />}></Route>
       </Routes>
     </BrowserRouter>

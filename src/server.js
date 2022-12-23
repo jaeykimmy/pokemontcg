@@ -36,6 +36,7 @@ app.post("/pokemontcg/favorites", (req, res) => {
   const item_id = req.body.item_id;
   const isFavorite = req.body.isFavorite;
   const price = req.body.price;
+  const image = req.body.image;
 
   console.log(req.body);
   console.log(item_id, isFavorite);
@@ -43,8 +44,8 @@ app.post("/pokemontcg/favorites", (req, res) => {
   if (isFavorite) {
     // If the item is a favorite, insert it into the table
     client.query(
-      `INSERT INTO favorites (item_id, is_favorite, price) VALUES ($1, $2, $3)`,
-      [item_id, isFavorite, price],
+      `INSERT INTO favorites (item_id, is_favorite, price, image) VALUES ($1, $2, $3, $4)`,
+      [item_id, isFavorite, price, image],
       (err, result) => {
         if (err) {
           console.error("Error executing query:", err.stack);

@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 export default function FavoriteButton({ cardInfo }) {
-  console.log(Object.values(cardInfo.tcgplayer.prices)[0]["market"]);
+  // console.log(Object.values(cardInfo.tcgplayer.prices)[0]["market"]);
+  console.log(cardInfo);
   const [itemId, setItemId] = useState(cardInfo.id);
-  const [price, setPrice] = useState(
-    Object.values(cardInfo.tcgplayer.prices)[0]["market"]
-  );
+  const [image, setImage] = useState(cardInfo.images.small);
+
+  const marketPrice =
+    cardInfo.tcgplayer.prices &&
+    Object.values(cardInfo.tcgplayer.prices)[0]["market"];
+  const [price, setPrice] = useState(marketPrice || 0);
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -15,6 +19,7 @@ export default function FavoriteButton({ cardInfo }) {
         price: price,
         item_id: itemId,
         isFavorite: !isFavorite,
+        image: image,
       })
       .then((res) => {
         console.log(res.data);
