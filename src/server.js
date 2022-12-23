@@ -40,18 +40,35 @@ app.post("/pokemontcg/favorites", (req, res) => {
   console.log(req.body);
   console.log(item_id, isFavorite);
   res.header("Access-Control-Allow-Origin", "*");
-  client.query(
-    `INSERT INTO favorites (item_id, is_favorite, price) VALUES ($1, $2, $3) ON CONFLICT (item_id) DO UPDATE SET is_favorite = $2`,
-    [item_id, isFavorite, price],
-    (err, result) => {
-      if (err) {
-        console.error("Error executing query:", err.stack);
-        res.status(500).send("Error saving favorite");
-      } else {
-        res.send("Favorite saved");
+  if (isFavorite) {
+    // If the item is a favorite, insert it into the table
+    client.query(
+      `INSERT INTO favorites (item_id, is_favorite, price) VALUES ($1, $2, $3)`,
+      [item_id, isFavorite, price],
+      (err, result) => {
+        if (err) {
+          console.error("Error executing query:", err.stack);
+          res.status(500).send("Error saving favorite");
+        } else {
+          res.send("Favorite saved");
+        }
       }
-    }
-  );
+    );
+  } else {
+    // If the item is not a favorite, delete it from the table
+    client.query(
+      `DELETE FROM favorites WHERE item_id = $1`,
+      [item_id],
+      (err, result) => {
+        if (err) {
+          console.error("Error executing query:", err.stack);
+          res.status(500).send("Error deleting favorite");
+        } else {
+          res.send("Favorite deleted");
+        }
+      }
+    );
+  }
 });
 
 const port = 8080;
