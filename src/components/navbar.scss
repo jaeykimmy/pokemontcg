@@ -1,10 +1,9 @@
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: white;
-  opacity: 0.5;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .navbar a {
@@ -15,4 +14,10 @@
 
 .navbar a:hover {
   color: gray;
+}
+.tcglogo {
+  height: 3rem;
+}
+.words a:first-of-type {
+  margin-right: 3rem; /* add a margin of 20 pixels to the right side of the first link */
 }

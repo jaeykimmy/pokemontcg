@@ -26,18 +26,20 @@ export default function BasicModal(props: any) {
   // console.log(props.cardInfo);
   return (
     <div className="card">
-      <Button onClick={handleOpen} className="icon-button">
-        <img className="card-small" src={props.cardSmall} alt=""></img>
-      </Button>
-      <div className="icon-set" style={{ color: "white" }}>
-        <img className="icon" src={props.cardSetIcon} alt=""></img>
-        {props.cardSet} #{props.cardNumber}
-      </div>
+      <div className="card-wrapper">
+        <Button onClick={handleOpen} className="icon-button">
+          <img className="card-small" src={props.cardSmall} alt=""></img>
+        </Button>
+        <div className="icon-set" style={{ color: "white" }}>
+          <img className="icon" src={props.cardSetIcon} alt=""></img>
+          {props.cardSet} #{props.cardNumber}
+        </div>
 
-      <Button variant="contained" href={props.cardURL} target="_blank">
-        TCGPlayer Price
-      </Button>
-      <FavoriteButton cardInfo={props.cardInfo} />
+        <Button variant="contained" href={props.cardURL} target="_blank">
+          TCGPlayer Price
+        </Button>
+        <FavoriteButton cardInfo={props.cardInfo} />
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
