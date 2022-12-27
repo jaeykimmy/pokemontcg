@@ -1,16 +1,15 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import { Navbar } from "react-bootstrap";
+import "./navbar.scss";
 
-interface NavbarProps {
-  // you can add any props that your Navbar component needs here
-}
-
-const Navbar: React.FC<NavbarProps> = (props) => {
+function MyNavbar() {
   return (
-    <nav>
+    <Navbar className="navbar" bg="light" expand="lg">
       <Link to="/">Home</Link>
       <Link to="/favorites">Favorites</Link>
-    </nav>
+    </Navbar>
   );
-};
+}
 
-export default Navbar;
+export default MyNavbar;
