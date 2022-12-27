@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./favorites.scss";
 export default function Favorites() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -15,11 +16,12 @@ export default function Favorites() {
   }, []);
 
   return (
-    <div>
+    <div className="card-info">
       {data.map((x) => (
-        <>
+        <div className="card-info-each">
           <img src={x.image} alt=""></img>
-        </>
+          <p>$ {x.price}</p>
+        </div>
       ))}
       <div>
         {" "}

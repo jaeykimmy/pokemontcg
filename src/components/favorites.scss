@@ -1,0 +1,22 @@
+.card-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-info > * {
+  width: 15%;
+  margin: 0.5rem;
+}
+
+.card-info-each {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+p {
+  font-size: 1.2rem;
+  text-align: center;
+}
