@@ -16,19 +16,21 @@ export default function Favorites() {
   }, []);
 
   return (
-    <div className="card-info">
-      {data.map((x) => (
-        <div className="card-info-each">
-          <img src={x.image} alt=""></img>
-          <p>$ {x.price}</p>
-        </div>
-      ))}
-      <div>
+    <div className="favorites">
+      <div className="total">
         {" "}
-        Total Value of your Collection: $
+        Your Collection is Worth: $
         {data.reduce((total, item) => {
           return total + Number(item.price);
         }, 0)}
+      </div>
+      <div className="card-info">
+        {data.map((x) => (
+          <div className="card-info-each">
+            <img className="card-photo-favorites" src={x.image} alt=""></img>
+            <p>$ {x.price}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
