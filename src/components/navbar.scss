@@ -2,14 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
+
   background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .navbar a {
   color: black;
   text-decoration: none;
   font-size: 1rem;
+  padding-right: 2rem;
+
+  align-items: center;
+  flex-direction: row;
 }
 
 .navbar a:hover {
@@ -17,7 +26,8 @@
 }
 .tcglogo {
   height: 3rem;
+  padding-left: 2rem;
 }
-.words a:first-of-type {
-  margin-right: 3rem; /* add a margin of 20 pixels to the right side of the first link */
-}
+// .words a:first-of-type {
+//   margin-right: 3rem; /* add a margin of 20 pixels to the right side of the first link */
+// }
