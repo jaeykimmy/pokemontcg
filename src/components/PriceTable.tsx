@@ -48,7 +48,7 @@ export default function BasicTable(props: CardData) {
                   variant="head"
                   align="right"
                 >
-                  ${x.toFixed(2)}
+                  ${x?.toFixed(2)}
                 </TableCell>
               ))}
             </TableRow>
@@ -93,7 +93,7 @@ export default function BasicTable(props: CardData) {
                     variant="head"
                     align="right"
                   >
-                    ${x.toFixed(2)}
+                    ${x?.toFixed(2)}
                   </TableCell>
                 ))}
               </TableRow>

@@ -254,7 +254,6 @@ function Home() {
                   new Date(b.set.releaseDate).valueOf()
                 );
               })
-              .reverse()
 
               .map((card: CardData) => (
                 <>

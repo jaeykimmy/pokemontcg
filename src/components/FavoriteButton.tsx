@@ -8,7 +8,7 @@ export default function FavoriteButton({ cardInfo }) {
 
   const marketPrice =
     cardInfo.tcgplayer.prices &&
-    Object.values(cardInfo.tcgplayer.prices)[0]["market"];
+    Object.values(cardInfo?.tcgplayer?.prices)[0]["market"];
   const [price, setPrice] = useState(marketPrice || 0);
 
   const [isFavorite, setIsFavorite] = useState(false);

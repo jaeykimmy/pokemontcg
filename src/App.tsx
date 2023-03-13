@@ -9,7 +9,7 @@ export default function App() {
       <MyNavbar />
       <Routes>
         <Route path="favorites" element={<Favorites />}></Route>
-        <Route path="" element={<Home />}></Route>
+        <Route path="pokemontcg" element={<Home />}></Route>
       </Routes>
     </BrowserRouter>
   );
