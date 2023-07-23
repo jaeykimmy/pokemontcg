@@ -6,14 +6,14 @@ import tcglogo from "../images/tcglogo.png";
 
 function MyNavbar() {
   const refreshPage = () => {
-    window.location.replace("/");
+    window.location.replace("/pokemontcg");
   };
   return (
     <Navbar className="navbar" bg="light" expand="lg">
       <img className="tcglogo" src={tcglogo} alt="" onClick={refreshPage}></img>
       <div className="words">
-        <Link to="/pokemontcg">Home</Link>
-        <Link to="/favorites">Favorites</Link>
+        {/* <Link to="/pokemontcg">Home</Link> */}
+        {/* <Link to="/favorites">Favorites</Link> */}
       </div>
     </Navbar>
   );
