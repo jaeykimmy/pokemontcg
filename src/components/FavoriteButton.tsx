@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 export default function FavoriteButton({ cardInfo }) {
   // console.log(Object.values(cardInfo.tcgplayer.prices)[0]["market"]);
-  console.log(cardInfo);
+
   const [itemId, setItemId] = useState(cardInfo.id);
   const [image, setImage] = useState(cardInfo.images.small);
 

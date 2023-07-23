@@ -62,6 +62,7 @@ const StyledButton = styled.button`
   }
   z-index: 50;
 `;
+
 function Home() {
   const [name, setName] = useState("");
   const [set, setSet] = useState({});
@@ -72,6 +73,11 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [cardSearchTrue, setCardSearchTrue] = useState(true);
 
+  const config = {
+    headers: {
+      "X-Api-Key": process.env.REACT_APP_MY_API_KEY,
+    },
+  };
   useEffect(() => {
     setLoading(true);
     axios
@@ -111,8 +117,9 @@ function Home() {
   const searchPokemon = (searchTerm: string) => {
     setLoading(true);
 
+    console.log(config);
     axios
-      .get(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}`)
+      .get(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}`, config)
       .then((res) => {
         setCardData(res.data.data);
         setLoading(false);
@@ -126,7 +133,8 @@ function Home() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://api.pokemontcg.io/v2/cards?q=set.id:${searchTerm}&orderBy=tcgplayer.prices.holofoil.market`
+        `https://api.pokemontcg.io/v2/cards?q=set.id:${searchTerm}&orderBy=tcgplayer.prices.holofoil.market`,
+        config
       );
       setSetData(res.data.data.reverse());
     } catch (error) {
@@ -147,7 +155,7 @@ function Home() {
   const refreshPage = () => {
     window.location.reload();
   };
-  console.log(cardData);
+  // console.log(cardData);
 
   return (
     <div className="App">
