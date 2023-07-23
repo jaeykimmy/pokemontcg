@@ -117,7 +117,6 @@ function Home() {
   const searchPokemon = (searchTerm: string) => {
     setLoading(true);
 
-    console.log(config);
     axios
       .get(`https://api.pokemontcg.io/v2/cards?q=name:${searchTerm}`, config)
       .then((res) => {
