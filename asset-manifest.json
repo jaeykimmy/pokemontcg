@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pokemontcg/static/css/main.5aaadb7a.css",
-    "main.js": "/pokemontcg/static/js/main.c75a3039.js",
+    "main.css": "/pokemontcg/static/css/main.d0774f87.css",
+    "main.js": "/pokemontcg/static/js/main.4afb334b.js",
     "static/js/988.6db339bd.chunk.js": "/pokemontcg/static/js/988.6db339bd.chunk.js",
     "static/media/tcglogo.png": "/pokemontcg/static/media/tcglogo.e75a53d5d530906862b3.png",
     "index.html": "/pokemontcg/index.html",
-    "main.5aaadb7a.css.map": "/pokemontcg/static/css/main.5aaadb7a.css.map",
-    "main.c75a3039.js.map": "/pokemontcg/static/js/main.c75a3039.js.map",
+    "main.d0774f87.css.map": "/pokemontcg/static/css/main.d0774f87.css.map",
+    "main.4afb334b.js.map": "/pokemontcg/static/js/main.4afb334b.js.map",
     "988.6db339bd.chunk.js.map": "/pokemontcg/static/js/988.6db339bd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5aaadb7a.css",
-    "static/js/main.c75a3039.js"
+    "static/css/main.d0774f87.css",
+    "static/js/main.4afb334b.js"
   ]
 }
