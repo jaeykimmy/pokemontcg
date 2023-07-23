@@ -96,19 +96,25 @@ function Home() {
     axios
       .get(`https://api.pokemontcg.io/v2/sets`)
       .then((res) => {
-        setAllSetNames(res.data.data.reverse());
+        setAllSetNames(
+          res.data.data.sort(
+            (a, b) =>
+              new Date(b.releaseDate).getTime() -
+              new Date(a.releaseDate).getTime()
+          )
+        );
         setLoading(false);
       })
       .catch(() => {
         setLoading(false);
       });
   }, []);
-  // console.log(allSetNames);
+  console.log(allSetNames);
   const newSetNames = allSetNames.map((x) => {
-    return { label: x["id"], name: x["name"] };
+    return { label: x["id"], name: x["name"], releaseDate: x["releaseDate"] };
   });
 
-  // console.log(newSetNames);
+  console.log(newSetNames);
 
   const updateSearchTerm = (pokemonName: string) => {
     setName(pokemonName);
@@ -142,7 +148,7 @@ function Home() {
       setLoading(false);
     }
   };
-
+  console.log(setData);
   const clearChangeIntoSetSearch = () => {
     setCardSearchTrue(false);
     setCardData([]);
