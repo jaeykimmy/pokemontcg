@@ -90,7 +90,20 @@ function Home() {
         setLoading(false);
       });
   }, []);
+  const [favourites, setFavourites] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/pokemontcg/favorites`)
+      .then((res) => {
+        setFavourites(res.data);
+        console.log(res.data);
+      })
+      .catch(() => {
+        console.error("error");
+      });
+  }, []);
+  console.log(favourites);
   useEffect(() => {
     setLoading(true);
     axios
@@ -110,8 +123,12 @@ function Home() {
       });
   }, []);
   console.log(allSetNames);
-  const newSetNames = allSetNames.map((x) => {
-    return { label: x["id"], name: x["name"], releaseDate: x["releaseDate"] };
+  const newSetNames = allSetNames?.map((x) => {
+    return {
+      label: x?.["id"],
+      name: x?.["name"],
+      releaseDate: x?.["releaseDate"],
+    };
   });
 
   console.log(newSetNames);
@@ -196,7 +213,7 @@ function Home() {
                   id="combo-box-demo"
                   options={newSetNames}
                   sx={{ width: 300 }}
-                  onChange={(event, newValue: any) => setSet(newValue.label)}
+                  onChange={(event, newValue: any) => setSet(newValue?.label)}
                   getOptionLabel={(option) => option.name}
                   renderInput={(params) => (
                     <TextField {...params} label="Set" />
@@ -251,6 +268,7 @@ function Home() {
                         cardURL={card.tcgplayer.url}
                         cardInfo={card}
                         key={card.id}
+                        favourites={favourites}
                       />
                     </>
                   )}

@@ -34,11 +34,15 @@ export default function BasicModal(props: any) {
           <img className="icon" src={props.cardSetIcon} alt=""></img>
           {props.cardSet} #{props.cardNumber}
         </div>
-
-        <Button variant="contained" href={props.cardURL} target="_blank">
-          TCGPlayer Price
-        </Button>
-        <FavoriteButton cardInfo={props.cardInfo} />
+        <div style={{ display: "flex" }}>
+          <Button variant="contained" href={props.cardURL} target="_blank">
+            TCGPlayer Price
+          </Button>
+          <FavoriteButton
+            cardInfo={props.cardInfo}
+            favourites={props.favourites}
+          />
+        </div>
       </div>
       <Modal
         open={open}

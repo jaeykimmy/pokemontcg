@@ -2,8 +2,8 @@ const express = require("express");
 const { Client } = require("pg");
 const cors = require("cors");
 const app = express();
-
-app.use(express.json());
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
 app.use(cors({ origin: "http://localhost:3000" }));
 const client = new Client({
   user: "jaeyoung",
@@ -56,6 +56,7 @@ app.post("/pokemontcg/favorites", (req, res) => {
       }
     );
   } else {
+    console.log(item_id);
     // If the item is not a favorite, delete it from the table
     client.query(
       `DELETE FROM favorites WHERE item_id = $1`,
